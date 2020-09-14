@@ -1,0 +1,7 @@
+{
+  "api": "1.0.0",
+  "id": "886688414738743606",
+  "name": "Hosted Export",
+  "main": "build/plugin.js",
+  "ui": "build/ui.html"
+}
