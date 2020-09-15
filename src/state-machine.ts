@@ -69,7 +69,7 @@ export default Machine<Context, Event>(
         error: (context, event) => ''
       }),
       figmaNotifyCopied: () =>
-        parent.postMessage({pluginMessage: {type: 'NOTIFY', data: '✅ Copied to clipboard'}}, '*'),
+        parent.postMessage({pluginMessage: {type: 'NOTIFY', data: 'Link copied to clipboard'}}, '*'),
       figmaClearSelection: () => parent.postMessage({pluginMessage: {type: 'CLEAR_SELECTION'}}, '*'),
       figmaGetSelection: () => parent.postMessage({pluginMessage: {type: 'GET_SELECTION'}}, '*')
     },
