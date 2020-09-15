@@ -1,13 +1,12 @@
-import {BaseStyles, Button, Text, Flex, Tooltip} from '@primer/components'
 import {useMachine} from '@xstate/react'
+import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import React from 'react'
 import stateMachine from '../state-machine'
-import {LinkIcon} from '@primer/octicons-react'
 
 export default function App() {
   const [state, send] = useMachine(stateMachine)
 
-  onmessage = (event) => {
+  onmessage = event => {
     switch (event.data.pluginMessage.type) {
       case 'SELECTION_CHANGE':
         send({type: 'SELECTION_CHANGE', data: event.data.pluginMessage.data})
@@ -16,38 +15,45 @@ export default function App() {
   }
 
   return (
-    <BaseStyles>
+    <div>
       {state.matches('fetchingImageUrl') ? (
-        <Text as="p" m={0} py={5} color="gray.6" fontSize={1} textAlign="center">
-          Fetching image URL...
-        </Text>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px 0'}}>
+          <div style={{backgroundPosition: 'initial'}} className="icon icon--spinner icon--spin"></div>
+          <div className="type">Fetching image URL...</div>
+        </div>
       ) : null}
       {state.matches('idle') ? (
         state.context.selection.length === 0 ? (
-          <Text as="p" m={0} py={5} color="gray.6" fontSize={1} textAlign="center">
+          <div className="type" style={{padding: '24px 0', textAlign: 'center'}}>
             No frames selected
-          </Text>
+          </div>
         ) : (
-          <Flex flexDirection="column" py={1}>
+          <div style={{padding: '4px 0'}}>
             {state.context.selection.map((selection, index) => (
-              <Flex key={`${selection.name} ${index}`} px={3} py={1} justifyContent="space-between">
-                <Text fontSize={1}>{selection.name}</Text>
-                <Tooltip text="Copy image URL" direction="w">
-                  <Button
-                    variant="small"
-                    p={1}
-                    sx={{border: 0, background: 'transparent', boxShadow: 'none'}}
-                    onClick={() => send({type: 'EXPORT', index})}
-                    aria-label="Copy image URL"
-                  >
-                    <LinkIcon />
-                  </Button>
-                </Tooltip>
-              </Flex>
+              <div
+                key={`${selection.name} ${index}`}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0 4px 0 16px'
+                }}
+              >
+                <div className="type">{selection.name}</div>
+                <button
+                  className="icon-button"
+                  aria-label="Copy image URL"
+                  title="Copy image URL"
+                  style={{padding: 0, cursor: 'default'}}
+                  onClick={() => send({type: 'EXPORT', index})}
+                >
+                  <div style={{marginTop: -2}} className="icon icon--hyperlink"></div>
+                </button>
+              </div>
             ))}
-          </Flex>
+          </div>
         )
       ) : null}
-    </BaseStyles>
+    </div>
   )
 }
