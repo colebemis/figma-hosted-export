@@ -40,15 +40,22 @@ export default function App() {
                 }}
               >
                 <div className="type">{selection.name}</div>
-                <button
+                <div
                   className="icon-button"
                   aria-label="Copy image URL"
                   title="Copy image URL"
-                  style={{padding: 0, cursor: 'default'}}
+                  tabIndex={0}
+                  role="button"
+                  style={{cursor: 'default'}}
+                  onKeyDown={event => {
+                    if (event.key === ' ' || event.key === 'Enter') {
+                      send({type: 'EXPORT', index})
+                    }
+                  }}
                   onClick={() => send({type: 'EXPORT', index})}
                 >
-                  <div style={{marginTop: -2}} className="icon icon--hyperlink"></div>
-                </button>
+                  <div className="icon icon--hyperlink"></div>
+                </div>
               </div>
             ))}
           </div>
