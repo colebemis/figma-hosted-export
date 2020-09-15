@@ -2,7 +2,7 @@
 
 Hosted Export allows you to copy hosted image URLs for any frame inside Figma.
 
-👉 [Install on Figma](https://www.figma.com/community/plugin/886688414738743606/Hosted-Export)
+👉 [Install on Figma](https://www.figma.com/community/plugin/886688414738743606/Hosted-Export) _(in review)_
 
 ![Demo gif](https://user-images.githubusercontent.com/4608155/93166049-83061380-f6d2-11ea-979a-11c6eac8b6e9.gif)
 Powered by Component AI's [JSX to PNG API]().
