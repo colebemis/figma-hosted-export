@@ -20,7 +20,7 @@ Powered by Component AI's [JSX to PNG API]().
 1. Clone the repository
 
    ```shell
-   git clone https://github.com/primer/figma-hosted-export.git
+   git clone https://github.com/colebemis/figma-hosted-export.git
    cd figma-hosted-export
    ```
 
